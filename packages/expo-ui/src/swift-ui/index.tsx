@@ -1,3 +1,6 @@
+// Load shared object support in worklets
+import './State/index.fx';
+
 export * from './AccessoryWidgetBackground';
 export * from './BottomSheet';
 export * from './Button';
@@ -42,4 +45,3 @@ export * from './Grid';
 export * from './RNHostView';
 export * from './Link';
 export { type CommonViewModifierProps } from './types';
-export { registerSharedObjectSerializer } from './State';
