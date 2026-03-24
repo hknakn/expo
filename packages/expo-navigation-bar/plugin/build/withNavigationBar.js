@@ -12,7 +12,6 @@ const debug_1 = __importDefault(require("debug"));
 const config_plugins_1 = require("expo/config-plugins");
 const debug = (0, debug_1.default)('expo:system-navigation-bar:plugin');
 const pkg = require('expo-navigation-bar/package.json');
-const EDGE_TO_EDGE_DEPRECATION_MESSAGE = 'property is deprecated due to Android 15 edge-to-edge enforcement and will be removed from Expo SDK';
 // strings.xml keys, this should not change.
 const VISIBILITY_KEY = 'expo_navigation_bar_visibility';
 const LEGACY_BAR_STYLE_MAP = {
@@ -36,15 +35,6 @@ function resolveProps(config, props) {
     }
     if ('visibility' in props) {
         config_plugins_1.WarningAggregator.addWarningAndroid('expo-navigation-bar visibility', 'Use `hidden` instead. This will be removed in a future release.');
-    }
-    if ('behavior' in props) {
-        config_plugins_1.WarningAggregator.addWarningAndroid('expo-navigation-bar behavior', EDGE_TO_EDGE_DEPRECATION_MESSAGE);
-    }
-    if ('borderColor' in props) {
-        config_plugins_1.WarningAggregator.addWarningAndroid('expo-navigation-bar borderColor', EDGE_TO_EDGE_DEPRECATION_MESSAGE);
-    }
-    if ('position' in props) {
-        config_plugins_1.WarningAggregator.addWarningAndroid('expo-navigation-bar position', EDGE_TO_EDGE_DEPRECATION_MESSAGE);
     }
     const hidden = props.hidden ?? (props.visibility == null ? undefined : props.visibility === 'hidden');
     return {

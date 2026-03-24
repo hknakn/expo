@@ -9,12 +9,7 @@ import {
   withAndroidStyles,
   withStringsXml,
 } from 'expo/config-plugins';
-import {
-  NavigationBarBehavior,
-  NavigationBarButtonStyle,
-  NavigationBarPosition,
-  NavigationBarVisibility,
-} from 'expo-navigation-bar';
+import { NavigationBarVisibility } from 'expo-navigation-bar';
 
 const debug = Debug('expo:system-navigation-bar:plugin');
 
@@ -32,17 +27,9 @@ export type Props = {
   style?: NavigationBarStyle;
 
   /** @deprecated */
-  barStyle?: NavigationBarButtonStyle | null;
+  barStyle?: NavigationBarStyle | null;
   /** @deprecated */
   visibility?: NavigationBarVisibility;
-  /** @deprecated */
-  backgroundColor?: string | null;
-  /** @deprecated */
-  behavior?: NavigationBarBehavior;
-  /** @deprecated */
-  borderColor?: string;
-  /** @deprecated */
-  position?: NavigationBarPosition;
 };
 
 type ResolvedProps = {
@@ -51,9 +38,6 @@ type ResolvedProps = {
   style?: NavigationBarStyle;
   visible?: AndroidNavigationBar['visible'];
 };
-
-const EDGE_TO_EDGE_DEPRECATION_MESSAGE =
-  'property is deprecated due to Android 15 edge-to-edge enforcement and will be removed from Expo SDK';
 
 // strings.xml keys, this should not change.
 const VISIBILITY_KEY = 'expo_navigation_bar_visibility';
@@ -90,24 +74,6 @@ export function resolveProps(
     WarningAggregator.addWarningAndroid(
       'expo-navigation-bar visibility',
       'Use `hidden` instead. This will be removed in a future release.'
-    );
-  }
-  if ('behavior' in props) {
-    WarningAggregator.addWarningAndroid(
-      'expo-navigation-bar behavior',
-      EDGE_TO_EDGE_DEPRECATION_MESSAGE
-    );
-  }
-  if ('borderColor' in props) {
-    WarningAggregator.addWarningAndroid(
-      'expo-navigation-bar borderColor',
-      EDGE_TO_EDGE_DEPRECATION_MESSAGE
-    );
-  }
-  if ('position' in props) {
-    WarningAggregator.addWarningAndroid(
-      'expo-navigation-bar position',
-      EDGE_TO_EDGE_DEPRECATION_MESSAGE
     );
   }
 
